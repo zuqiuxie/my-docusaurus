@@ -64,7 +64,7 @@ const config = {
           {to: 'blog', label: 'Blog', position: 'left'},
           // Please keep GitHub link to the right for consistency.
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/tjx158589/docusaurus',
             label: 'GitHub',
             position: 'right',
           },
