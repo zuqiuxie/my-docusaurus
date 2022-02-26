@@ -17,7 +17,7 @@
 
 
 
-### ![image-20220226144057400](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202202261440461.png)2、爆数据库：
+### (https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202202261440461.png)2、爆数据库：
 
 ```
 -1 union select 1,user(),database()
