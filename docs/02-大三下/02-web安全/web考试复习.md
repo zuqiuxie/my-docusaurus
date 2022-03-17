@@ -4,7 +4,7 @@
 
 静态网页：
 
-![image-20220314152240104](https://bao-1309906221.cos.ap-nanjing.myqcloud.com/20220314152240.png)
+![image-20220314152240104](https://bao-1309906221.cos.ap-nanjing.myqcloud.com/20220314152240.png[docusaurus](https://github.com/0xxtoby/docusaurus))
 
 动态网页：
 
