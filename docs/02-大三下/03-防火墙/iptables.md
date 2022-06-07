@@ -1,6 +1,4 @@
-# 原文地址:http://drops.wooyun.org/tips/1424
-
-
+# iptables材料
 
 ## 0x00 iptables介绍
 
