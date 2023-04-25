@@ -1,6 +1,4 @@
-使用 Modlishka 反向 HTTP 代理进行网络钓鱼
-
-
+# modlishka钓鱼
 
 # Modlishka
 
@@ -25,7 +23,7 @@ ls -lah
 
 ![img](https://2603957456-files.gitbook.io/~/files/v0/b/gitbook-legacy-files/o/assets%2F-LFEMnER3fywgFHoroYn%2F-LiFMettRbOEeU1PNch4%2F-LiFT9ga7bDsW9ghRRgY%2FAnnotation 2019-06-25 214300.png?alt=media&token=42a4c407-1ba5-45ef-90e1-b65f97379636)
 
-![image-20220731104013359](https://tva1.sinaimg.cn/large/e6c9d24egy1h4pwt62y73j20ua07cmyg.jpg)
+![image-20220731104013359](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/e6c9d24egy1h4pwt62y73j20ua07cmyg.jpg)
 
 # 2、Modlishka 配置
 
@@ -72,19 +70,19 @@ ls -lah
 sudo certbot certonly --manual --preferred-challenges=dns --server https://acme-v02.api.letsencrypt.org/directory --agree-tos -d "*.tobyblog.cn" --email noreply@live.com
 ```
 
-![image-20220731104407974](https://tva1.sinaimg.cn/large/e6c9d24egy1h4pwx6qcpfj210s0p4q6v.jpg)
+![image-20220731104407974](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/e6c9d24egy1h4pwx6qcpfj210s0p4q6v.jpg)
 
 然后我们需要在我们的域名的DNS控制台配置,配置完需要等待10分钟左右才能生效.
 
 可以在上面第二个红框地址查看配置是否生效
 
-![image-20220731104711648](https://tva1.sinaimg.cn/large/e6c9d24egy1h4px0daywhj20uh0u0q4j.jpg)
+![image-20220731104711648](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/e6c9d24egy1h4px0daywhj20uh0u0q4j.jpg)
 
-![image-20220731105901604](https://tva1.sinaimg.cn/large/e6c9d24egy1h4pxcp471rj21iy0u0dhw.jpg)
+![image-20220731105901604](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/e6c9d24egy1h4pxcp471rj21iy0u0dhw.jpg)
 
 创建 DNS TXT 记录后，按回车继续生成证书：
 
-![image-20220731105958440](https://tva1.sinaimg.cn/large/e6c9d24egy1h4pxdntz1sj21dc0im0wb.jpg)
+![image-20220731105958440](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/e6c9d24egy1h4pxdntz1sj21dc0im0wb.jpg)
 
 生成证书后，我们需要将它们转换为适合嵌入 JSON 对象的格式：
 
@@ -93,17 +91,17 @@ awk '{printf "%s\\n", $0}' /etc/letsencrypt/live/redteam.me/fullchain.pem
 awk '{printf "%s\\n", $0}' /etc/letsencrypt/live/redteam.me/privkey.pem 
 ```
 
-![image-20220731110032804](https://tva1.sinaimg.cn/large/e6c9d24egy1h4pxea1g8nj21oa0l2tmc.jpg)
+![image-20220731110032804](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/e6c9d24egy1h4pxea1g8nj21oa0l2tmc.jpg)
 
 在配置文件中添加证书和key
 
-![image-20220731111110653](https://tva1.sinaimg.cn/large/e6c9d24egy1h4pxpbxv9xj21ka0u0q82.jpg)
+![image-20220731111110653](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/e6c9d24egy1h4pxpbxv9xj21ka0u0q82.jpg)
 
 # 4、配置访问DNS 记录
 
 让我们为根主机创建一条 A 记录`t`，它只指向 钓鱼服务器 的 IP：
 
-![image-20220731111222346](https://tva1.sinaimg.cn/large/e6c9d24egy1h4pxqrl5n8j216m03yglp.jpg)
+![image-20220731111222346](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/e6c9d24egy1h4pxqrl5n8j216m03yglp.jpg)
 
 这非常重要——我们需要`CNAME`记录任何`*`指向的主机/子域`t`
 

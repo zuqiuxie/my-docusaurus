@@ -70,8 +70,13 @@ const config = {
           },
         ],
       },
+      footer: {
+        
+        copyright: `版权所有 © ${new Date().getFullYear()} 我的项目. 使用 Docusaurus 构建.`,
+      },
      
     }),
+    
 };
 
 module.exports = config;
