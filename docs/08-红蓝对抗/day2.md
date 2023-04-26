@@ -9,7 +9,7 @@ yum install -y wget && wget -O install.sh https://notdocker.xp.cn/install.sh && 
 sudo xp
 ```
 
-<img src="https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/008i3skNly1gxsfvafdmbj306q04rglo.jpg" alt="image-20211227154829039" style="zoom:150%;" />
+<img src="https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/008i3skNly1gxsfvafdmbj306q04rglo.jpg" alt="image-20211227154829039"  />
 
 ![image-20211227155849879](https://tobyjpghub-1258737888.cos.ap-shanghai.myqcloud.com/008i3skNly1gxsg620hv0j32220nk43a.jpg)
 
