@@ -26,7 +26,7 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        docs: {
+        sports: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
@@ -61,7 +61,7 @@ const config = {
             position: 'left',
             label: '运动',
           },
-          {to: 'blog', label: 'Blog', position: 'left'},
+          {to: 'blog', label: 'blog', position: 'left'},
           // Please keep GitHub link to the right for consistency.
           {
             href: 'https://github.com/zuqiuxie/my-docusaurus',
