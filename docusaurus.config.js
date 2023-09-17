@@ -11,7 +11,7 @@
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Tobyの个人知识库',
+  title: 'Binの个人知识库',
   tagline: '为了避免遗忘、便于分享，我在这里收录知识。 请随意浏览～',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
@@ -49,7 +49,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Tobyの个人知识库',
+        title: 'Binの个人知识库',
         logo: {
           alt: 'My Facebook Project Logo',
           src: 'img/zs.svg',
@@ -59,7 +59,7 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: '笔记',
+            label: '运动',
           },
           {to: 'blog', label: 'Blog', position: 'left'},
           // Please keep GitHub link to the right for consistency.
@@ -72,7 +72,7 @@ const config = {
       },
       footer: {
         
-        copyright: `版权所有 © ${new Date().getFullYear()} 我的项目. 使用 Docusaurus 构建.`,
+        copyright: `版权所有 © ${new Date().getFullYear()} Binの个人知识库. 使用 Docusaurus 构建.`,
       },
      
     }),
