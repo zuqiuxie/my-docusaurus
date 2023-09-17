@@ -13,7 +13,7 @@
 const config = {
   title: 'Binの个人知识库',
   tagline: '为了避免遗忘、便于分享，我在这里收录知识。 请随意浏览～',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://my.wangbin.run',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -30,7 +30,7 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://github.com/tjx158589/docusaurus/tree/master/',
+            'https://github.com/zuqiuxie/my-docusaurus/tree/master',
         },
         blog: {
           showReadingTime: true,
@@ -64,7 +64,7 @@ const config = {
           {to: 'blog', label: 'Blog', position: 'left'},
           // Please keep GitHub link to the right for consistency.
           {
-            href: 'https://github.com/tjx158589/docusaurus',
+            href: 'https://github.com/zuqiuxie/my-docusaurus',
             label: 'GitHub',
             position: 'right',
           },

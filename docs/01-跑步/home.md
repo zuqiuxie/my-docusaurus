@@ -1,9 +1,7 @@
 ---
-slug: /
-sidebar_position: 0.5
-id: home
+sidebar_position: 1
 title: 跑步运动
 ---
 ![LINUX-LOGO](https://static.7wate.com/img/2022/07/11/12a2479f79708.png)
 
-Always For Freedom.
+跑步运动
